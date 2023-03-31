@@ -20,23 +20,40 @@
       <form action="#">
         <div class="inputs">
           <label for="email">Email:</label>
-          <input type="text" id="email" name="email" placeholder="you@example.com" required>
+          <input type="email" class="input" id="email" name="email" placeholder="you@example.com" required>
+          <div class="error-msg-container">
+            <p class="error-msg"id="email-error"></p>
+          </div>
         </div>
         <div class="inputs">
           <label for="country">Country:</label>
-          <input type="country" id="country" name="country" placeholder="United Kingdom" required>
+          <select id="country" name="country" required>
+            <option value="gb">United Kingdom</option>
+            <option value="fr">France</option>
+            <option value="de">Germany</option>
+            <option value="nl">The Netherlands</option>
+          </select>
         </div>
         <div class="inputs">
-          <label for="post-code">Post Code:</label>
-          <input type="text" id="post-code" name="post-code" placeholder="WC2N 5DS" required>
+          <label for="post-code">Post/ZIP Code:</label>
+          <input type="text" class="input" id="post-code" name="post-code" placeholder="WC2N 5DS" required>
+          <div class="error-msg-container">
+            <p class="error-msg"id="post-error"></p>
+          </div>
         </div>
         <div class="inputs">
           <label for="password">Password:</label>
-          <input type="text" id="password" name="password" required>
+          <input type="text" class="input" id="password" name="password" required>
+          <div class="error-msg-container">
+            <p class="error-msg"id="password-error"></p>
+          </div>
         </div>
         <div class="inputs">
           <label for="password-confirm">Confirm Password:</label>
-          <input type="text" id="password-confirm" name="password-confirm" required>
+          <input type="text" class="input" id="password-confirm" name="password-confirm" required>
+          <div class="error-msg-container">
+            <p class="error-msg"id="password-error"></p>
+          </div>
         </div>
         <div class="btn-container"><button type="submit">Submit</button></div>
       </form>

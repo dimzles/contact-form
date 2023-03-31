@@ -6,6 +6,7 @@
   --main-font: 'Rubik', sans-serif;
   --light-blue: #8EA7E9;
   --blue: #7286D3;
+  --error-msg: '';
 }
 
 html, body {
@@ -62,7 +63,7 @@ label {
   color: white;
 }
 
-input {
+.input {
   font-family: var(--main-font);
   border: none;
   border-radius: 8px;
@@ -84,6 +85,33 @@ button {
   font-size: 1rem;
   padding: 0.5rem;
   cursor: pointer;
+}
+
+select {
+  font-family: var(--main-font);
+  min-width: 80%;
+  border-radius: 8px;
+}
+
+.input:invalid {
+  border: 2px solid red;
+}
+
+.input:valid {
+  border: 2px solid green;
+}
+
+.error-msg-container {
+  display: flex;
+  justify-content: flex-start;
+  min-width: 80%;
+  padding: 0 0.5rem;
+}
+
+.error-msg {
+  margin: 0;
+  color: red;
+  font-family: var(--main-font);
 }
 
 
