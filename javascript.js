@@ -3,7 +3,6 @@ function validateEmail() {
   const emailError = document.getElementById("email-error");
 
   email.addEventListener("input", () => {
-    console.log(email.checkValidity());
     if (email.validity.valueMissing) {
       emailError.textContent = "This field is required.";
       email.setCustomValidity("This field is required.");
@@ -42,7 +41,6 @@ function validatePostCode() {
   const POST_CODE_ERROR = document.getElementById("post-error");
 
   const CONSTRAINT = new RegExp(CONSTRAINTS[COUNTRY][0], "i");
-  console.log(CONSTRAINT);
 
   if (!CONSTRAINT.test(POST_CODE_FIELD.value)) {
     POST_CODE_FIELD.setCustomValidity(CONSTRAINTS[COUNTRY][1]);
@@ -62,9 +60,6 @@ function validatePassword() {
   );
 
   PASSWORD_INPUT.addEventListener("input", () => {
-    console.log(PASSWORD_INPUT.value, PASSWORD_CONFIRM.value);
-    console.log(PASSWORD_INPUT.value === PASSWORD_CONFIRM.value);
-
     if (PASSWORD_INPUT.validity.valueMissing) {
       PASSWORD_INPUT.setCustomValidity("This field is required.");
       PASSWORD_ERROR.textContent = "This field is required.";
@@ -95,10 +90,27 @@ function validatePassword() {
   });
 }
 
+function clearInputs() {
+  const inputs = Array.from(document.getElementsByClassName("input"));
+
+  inputs.forEach((input) => {
+    input.value = "";
+  });
+}
+
 window.onload = () => {
   document.getElementById("country").onchange = validatePostCode;
   document.getElementById("post-code").oninput = validatePostCode;
 };
+
+document.getElementById("submit").addEventListener("click", () => {
+  const form = document.getElementById("form");
+
+  if (form.checkValidity()) {
+    clearInputs();
+    alert("Submit successful!");
+  } else clearInputs();
+});
 
 validateEmail();
 validatePassword();
