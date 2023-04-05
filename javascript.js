@@ -1,4 +1,4 @@
-function checkEmail() {
+function validateEmail() {
   const email = document.getElementById("email");
   const emailError = document.getElementById("email-error");
 
@@ -53,9 +53,52 @@ function validatePostCode() {
   }
 }
 
+function validatePassword() {
+  const PASSWORD_INPUT = document.getElementById("password");
+  const PASSWORD_CONFIRM = document.getElementById("password-confirm");
+  const PASSWORD_ERROR = document.getElementById("password-error");
+  const PASSWORD_CONFIRM_ERROR = document.getElementById(
+    "password-confirm-error"
+  );
+
+  PASSWORD_INPUT.addEventListener("input", () => {
+    console.log(PASSWORD_INPUT.value, PASSWORD_CONFIRM.value);
+    console.log(PASSWORD_INPUT.value === PASSWORD_CONFIRM.value);
+
+    if (PASSWORD_INPUT.validity.valueMissing) {
+      PASSWORD_INPUT.setCustomValidity("This field is required.");
+      PASSWORD_ERROR.textContent = "This field is required.";
+    } else if (PASSWORD_INPUT.value !== PASSWORD_CONFIRM.value) {
+      PASSWORD_INPUT.setCustomValidity("Passwords must match.");
+      PASSWORD_CONFIRM.setCustomValidity("Passwords must match.");
+
+      PASSWORD_ERROR.textContent = "Passwords must match.";
+      PASSWORD_CONFIRM_ERROR.textContent = "Passwords must match.";
+    } else if (PASSWORD_INPUT.value === PASSWORD_CONFIRM.value) {
+      PASSWORD_INPUT.setCustomValidity("");
+      PASSWORD_CONFIRM.setCustomValidity("");
+      PASSWORD_ERROR.textContent = "";
+      PASSWORD_CONFIRM_ERROR.textContent = "";
+    }
+  });
+
+  PASSWORD_CONFIRM.addEventListener("input", () => {
+    if (PASSWORD_CONFIRM.validity.valueMissing) {
+      PASSWORD_CONFIRM.setCustomValidity("This field is required.");
+      PASSWORD_CONFIRM_ERROR.textContent = "This field is required.";
+    } else if (PASSWORD_CONFIRM.value === PASSWORD_INPUT.value) {
+      PASSWORD_INPUT.setCustomValidity("");
+      PASSWORD_CONFIRM.setCustomValidity("");
+      PASSWORD_ERROR.textContent = "";
+      PASSWORD_CONFIRM_ERROR.textContent = "";
+    }
+  });
+}
+
 window.onload = () => {
   document.getElementById("country").onchange = validatePostCode;
   document.getElementById("post-code").oninput = validatePostCode;
 };
 
-checkEmail();
+validateEmail();
+validatePassword();
